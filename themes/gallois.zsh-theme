@@ -1,6 +1,6 @@
-ZSH_THEME_GIT_PROMPT_PREFIX=""
-ZSH_THEME_GIT_PROMPT_SUFFIX=""
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="("
+ZSH_THEME_GIT_PROMPT_SUFFIX=")"
+ZSH_THEME_GIT_PROMPT_DIRTY="*"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 #Customized git status, oh-my-zsh currently does not allow render dirty status before branch
@@ -69,5 +69,5 @@ GREEN=`print_color 2`
 BLUE=`print_color 4`
 
 PROMPT='
-%{$fg[black]%}${_time} ${RED}%~ ${BLUE}($(git_custom_status))
+%{$fg[black]%}${_time} ${RED}%~ ${BLUE}$(git_custom_status) %{$fg[green]%}$(virtualenv_info)%{$reset_color%}
 %(?.${GREEN}.${RED})%B>%b %{$reset_color%}'
