@@ -1,5 +1,5 @@
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg_bold[red]%}["
-ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
@@ -11,7 +11,7 @@ git_custom_status() {
   fi
 }
 
-RPS1='$(git_custom_status) $EPS1'
+RPS1=""
 
 function print_color () { 
     echo -ne "%{\e[38;05;${1}m%}"; 
@@ -66,7 +66,8 @@ function precmd {
 YELLOW=`print_color 226`
 RED=`print_color 1`
 GREEN=`print_color 2`
+BLUE=`print_color 4`
 
 PROMPT='
-%{$fg[black]%}${_time} ${RED}%~
-%(?.${GREEN}.${RED})%B>%b '
+%{$fg[black]%}${_time} ${RED}%~ ${BLUE}($(git_custom_status))
+%(?.${GREEN}.${RED})%B>%b %{$reset_color%}'
