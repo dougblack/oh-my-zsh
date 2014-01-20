@@ -2,7 +2,7 @@ function git_status_grep() {
     line_begin='^\s*'
     changed=$(git status -s | grep $line_begin$1 | wc -l | tr -d ' ' )
     if [[ $changed -gt 0 ]]; then
-        echo "%{$fg[$2]%}$1:$changed%{$fg[white]%}"
+        echo "%{$fg[$2]%}$1:$changed%{$fg[black]%}"
     else
         echo ""
     fi
@@ -10,7 +10,7 @@ function git_status_grep() {
 
 function git_modified_count() {
 names=(M \?\? D A R)
-colors=(white white white white white)
+colors=(black black black black black)
 output=""
 for (( i = 1; i <= $#names; i++ )) do 
     column=$(git_status_grep $names[$i] $colors[$i])
@@ -34,7 +34,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 function git_custom_status() {
   local cb=$(current_branch)
   if [ -n "$cb" ]; then
-      ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[white]%}$(git_modified_count)"
+      ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[black]%}$(git_modified_count)"
       echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX$(parse_git_dirty)"
   fi
 }
