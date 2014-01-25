@@ -22,7 +22,14 @@ for (( i = 1; i <= $#names; i++ )) do
         fi
     fi
 done
-echo "[$output]"
+echo " [$output]"
+}
+
+function get_background_job_count() {
+num_jobs=$(jobs | wc -l | tr -d ' ')
+if [[ $num_jobs -gt 0 ]]; then
+    echo " [$num_jobs]"
+fi
 }
 
 ZSH_THEME_GIT_PROMPT_PREFIX="("
@@ -34,7 +41,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 function git_custom_status() {
   local cb=$(current_branch)
   if [ -n "$cb" ]; then
-      ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[black]%}$(git_modified_count)"
+      ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[black]%}$(get_background_job_count)"
       echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX$(parse_git_dirty)"
   fi
 }
