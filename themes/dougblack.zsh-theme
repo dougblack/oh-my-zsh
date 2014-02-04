@@ -41,7 +41,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 function git_custom_status() {
   local cb=$(current_branch)
   if [ -n "$cb" ]; then
-      ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[black]%}$(get_background_job_count)"
       echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX$(parse_git_dirty)"
   fi
 }
@@ -104,5 +103,5 @@ GREEN=`print_color 2`
 BLUE=`print_color 4`
 
 PROMPT='
-%{$fg[black]%}${_time} ${RED}%~ ${BLUE}$(git_custom_status) %{$fg[green]%}$(virtualenv_info)%{$reset_color%}
+%{$fg[black]%}${_time} ${RED}%~ ${BLUE}$(git_custom_status)%{$fg[black]%}$(get_background_job_count) %{$fg[green]%}$(virtualenv_info)%{$reset_color%}
 %(?.${GREEN}.${RED})%B>%b %{$reset_color%}'
